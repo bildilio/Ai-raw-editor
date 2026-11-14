@@ -78,7 +78,7 @@ def export_batch(source, destination, settings, notify=None, cancelled=None):
         if notify:
             notify(index, len(files), str(path))
     with (out / 'edit_report.csv').open('w', newline='', encoding='utf-8-sig') as stream:
-        writer = csv.DictWriter(stream, fieldnames=['source', 'output', 'status', 'ev', 'contrast', 'saturation'])
+        writer = csv.DictWriter(stream, fieldnames=['source', 'output', 'status', 'ev', 'contrast', 'saturation', 'strength', 'white_balance', 'shadow_lift', 'highlight_rolloff'], extrasaction='ignore')
         writer.writeheader()
         writer.writerows(report)
     return report
