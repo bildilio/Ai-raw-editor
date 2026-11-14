@@ -4,6 +4,7 @@ from pathlib import Path
 import csv
 import numpy as np
 from PIL import Image, ImageEnhance
+from professional import correct
 
 EXTENSIONS = {'.cr2', '.cr3', '.nef', '.arw', '.dng', '.raf', '.rw2', '.orf'}
 PRESETS = {
@@ -46,8 +47,9 @@ def edit(image, settings):
     result = ImageEnhance.Brightness(image).enhance(2 ** ev)
     result = ImageEnhance.Contrast(result).enhance(1 + (contrast - 1) * strength)
     result = ImageEnhance.Color(result).enhance(1 + (saturation - 1) * strength)
+    result, local_recipe = correct(result, strength, settings.preset)
     return result, {'ev': round(ev, 3), 'contrast': round(1 + (contrast - 1) * strength, 3),
-                    'saturation': round(1 + (saturation - 1) * strength, 3)}
+                    'saturation': round(1 + (saturation - 1) * strength, 3), **local_recipe}
 
 def export_batch(source, destination, settings, notify=None, cancelled=None):
     files = discover(source)
