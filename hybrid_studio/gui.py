@@ -83,13 +83,14 @@ class Studio(tk.Tk):
             messagebox.showwarning('Foto belum dipilih','Pilih foto asli dan hasil generatif terlebih dahulu')
             return
         self.status.set('Memeriksa landmark kedua foto dan menyelaraskan wajah...')
+        selected_strength = float(self.strength.get())
         self.result=None
         self.save_button.configure(state='disabled')
         def action():
             try:
                 source=engine.load_rgb(self.original.get())
                 generated=engine.load_rgb(self.generated.get())
-                result,mask,reports=engine.composite(source,generated,strength=self.strength.get())
+                result,mask,reports=engine.composite(source,generated,strength=selected_strength)
                 # Preview uses generated resized to input size after aspect check.
                 if generated.shape!=source.shape:
                     import cv2

@@ -2,6 +2,10 @@
 
 **Tujuan:** pakai foto hasil generative AI ChatGPT sebagai lapisan dasar, pertahankan **piksel/detail wajah dari foto asli**, dan adaptasikan pencahayaan wajah ke hasil generatif tanpa API berbayar. Pemrosesan foto dilakukan lokal di PC.
 
+## Cara cepat Windows (Python 3.11)
+
+Setelah clone atau ekstrak repo, **double-click `start_hybrid_studio.bat`** di folder utama. Skrip membuat environment `.venv_hybrid`, memasang dependensi sekali, lalu menjalankan UI.
+
 ## Instalasi Windows (Python 3.11)
 
 ```powershell
